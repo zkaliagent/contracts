@@ -1,0 +1,217 @@
+{
+  "name": "contract-field",
+  "label": "契约字段",
+  "module": "contract/contract-field",
+  "version": "1.0.0",
+  "description": "定义契约字段的结构、类型、约束、默认值及引用关系",
+  "author": "zkali",
+  "tags": [
+    "contract",
+    "field",
+    "type"
+  ],
+  "fields": {
+    "name": {
+      "name": "name",
+      "label": "字段名称",
+      "type": "string",
+      "required": true,
+      "description": "字段唯一机器标识"
+    },
+    "label": {
+      "name": "label",
+      "label": "字段标签",
+      "type": "string",
+      "required": true,
+      "description": "字段显示名称"
+    },
+    "type": {
+      "name": "type",
+      "label": "字段类型",
+      "type": "select",
+      "required": true,
+      "description": "定义字段的数据类型",
+      "multiSelect": false,
+      "enum": [
+        "string",
+        "integer",
+        "number",
+        "boolean",
+        "select",
+        "enum",
+        "array",
+        "object",
+        "date",
+        "datetime",
+        "textarea",
+        "file",
+        "json",
+        "ref",
+        "any"
+      ]
+    },
+    "required": {
+      "name": "required",
+      "label": "是否必填",
+      "type": "boolean",
+      "required": true,
+      "description": "定义当前字段是否必须提供",
+      "defaultValue": false
+    },
+    "description": {
+      "name": "description",
+      "label": "字段描述",
+      "type": "textarea",
+      "required": true,
+      "description": "描述字段用途、语义、限制及使用场景"
+    },
+    "multiSelect": {
+      "name": "multiSelect",
+      "label": "是否多选",
+      "type": "boolean",
+      "required": false,
+      "description": "定义 select 类型字段是否允许同时选择多个值",
+      "defaultValue": false
+    },
+    "enum": {
+      "name": "enum",
+      "label": "枚举值",
+      "type": "array",
+      "required": false,
+      "description": "定义字段允许使用的枚举值集合",
+      "min": 0,
+      "items": {
+        "type": "string"
+      }
+    },
+    "min": {
+      "name": "min",
+      "label": "最小值",
+      "type": "number",
+      "required": false,
+      "description": "定义数值字段的最小值或数组字段的最小元素数量"
+    },
+    "max": {
+      "name": "max",
+      "label": "最大值",
+      "type": "number",
+      "required": false,
+      "description": "定义数值字段的最大值或数组字段的最大元素数量"
+    },
+    "minLength": {
+      "name": "minLength",
+      "label": "最小长度",
+      "type": "integer",
+      "required": false,
+      "description": "定义字符串字段允许的最小字符长度",
+      "min": 0
+    },
+    "maxLength": {
+      "name": "maxLength",
+      "label": "最大长度",
+      "type": "integer",
+      "required": false,
+      "description": "定义字符串字段允许的最大字符长度",
+      "min": 0
+    },
+    "pattern": {
+      "name": "pattern",
+      "label": "匹配规则",
+      "type": "string",
+      "required": false,
+      "description": "定义字符串字段必须满足的正则表达式"
+    },
+    "defaultValue": {
+      "name": "defaultValue",
+      "label": "默认值",
+      "type": "any",
+      "required": false,
+      "description": "定义字段未显式赋值时使用的默认值"
+    },
+    "nullable": {
+      "name": "nullable",
+      "label": "允许为空",
+      "type": "boolean",
+      "required": false,
+      "description": "定义字段是否允许显式使用 null 值",
+      "defaultValue": false
+    },
+    "items": {
+      "name": "items",
+      "label": "数组元素",
+      "type": "object",
+      "required": false,
+      "description": "定义 array 类型字段中单个元素的结构与约束",
+      "properties": {
+        "type": {
+          "name": "type",
+          "label": "元素类型",
+          "type": "select",
+          "required": true,
+          "description": "定义数组元素的数据类型",
+          "enum": [
+            "string",
+            "integer",
+            "number",
+            "boolean",
+            "array",
+            "object",
+            "date",
+            "datetime",
+            "json",
+            "ref",
+            "any"
+          ]
+        },
+        "ref": {
+          "name": "ref",
+          "label": "引用契约",
+          "type": "string",
+          "required": false,
+          "description": "定义数组元素引用的外部契约名称"
+        }
+      }
+    },
+    "properties": {
+      "name": "properties",
+      "label": "对象属性",
+      "type": "object",
+      "required": false,
+      "description": "定义 object 类型字段内部包含的子字段集合"
+    },
+    "ref": {
+      "name": "ref",
+      "label": "引用契约",
+      "type": "array",
+      "required": false,
+      "description": "定义当前字段关联或引用的其他契约名称集合",
+      "items": {
+        "type": "string"
+      }
+    },
+    "readonly": {
+      "name": "readonly",
+      "label": "是否只读",
+      "type": "boolean",
+      "required": false,
+      "description": "定义字段是否仅允许读取而不允许修改",
+      "defaultValue": false
+    },
+    "unique": {
+      "name": "unique",
+      "label": "是否唯一",
+      "type": "boolean",
+      "required": false,
+      "description": "定义字段值是否要求保持唯一",
+      "defaultValue": false
+    },
+    "deprecated": {
+      "name": "deprecated",
+      "label": "是否废弃",
+      "type": "boolean",
+      "required": false,
+      "description": "定义字段是否已进入废弃状态",
+      "defaultValue": false
+    }
+  }
+}
